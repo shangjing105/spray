@@ -1,9 +1,52 @@
 package com.shang.spray.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Beautiful extends BaseEntity{
+
+    public enum StatusEnum {
+        SHANGJIA(1,"上架"),
+        XIAJIA(2,"下架");
+
+        private Integer code;
+
+        private String name;
+
+        StatusEnum(Integer code, String name) {
+            this.code = code;
+            this.name = name;
+        }
+
+
+
+        public Integer getCode() {
+            return code;
+        }
+
+        public void setCode(Integer code) {
+            this.code = code;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    public String getStatusName() {
+        for (Beautiful.StatusEnum statusEnum : Beautiful.StatusEnum.values()) {
+            if (statusEnum.getCode().equals(this.status)) {
+                return statusEnum.getName();
+            }
+        }
+        return null;
+    }
 
     /**
      * 类型id
@@ -23,7 +66,9 @@ public class Beautiful extends BaseEntity{
     /**
      * 来源
      */
-    private String source;
+    @OneToOne
+    @JoinColumn(name = "sources_id")
+    private Sources sources;
 
     private String label;
 
@@ -102,22 +147,12 @@ public class Beautiful extends BaseEntity{
         this.link = link;
     }
 
-    /**
-     * 获取来源
-     *
-     * @return source - 来源
-     */
-    public String getSource() {
-        return source;
+    public Sources getSources() {
+        return sources;
     }
 
-    /**
-     * 设置来源
-     *
-     * @param source 来源
-     */
-    public void setSource(String source) {
-        this.source = source;
+    public void setSources(Sources sources) {
+        this.sources = sources;
     }
 
     /**

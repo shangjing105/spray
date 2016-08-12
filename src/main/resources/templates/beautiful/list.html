@@ -60,12 +60,26 @@
                                         <img alt="150x150" th:src="@{${b.link}}" th:width="150px" th:height="150px"/>
                                     </a>
 
-                                    <div class="tools">
-                                        <a href="#">
-                                            <i class="icon-pencil"></i>
-                                        </a>
+                                    <div class="tags">
+                                        <span class="label-holder">
+											<span class="label label-info" th:text="${b.statusName}">breakfast</span>
+                                        </span>
+                                        <span class="label-holder" th:if="${b.placedTop!=null}?${b.placedTop}">
+											<span class="label label-danger arrowed-in" >置顶</span>
+                                        </span>
+                                        <span class="label-holder" th:if="${b.recommend!=null}?${b.recommend}">
+											<span class="label label-success arrowed-in" >推荐</span>
+                                        </span>
+                                    </div>
 
-                                        <a href="#">
+                                    <div class="tools">
+                                        <a th:href="@{/beautiful/addLink(id=${b.id})}">
+                                            <i class="icon-pencil green"></i>
+                                        </a>
+                                        <a th:href="@{/beautiful/closeBeautiful/__${b.id}__}">
+                                            <i class="icon-lock blue"></i>
+                                        </a>
+                                        <a th:href="@{/beautiful/delBeautiful/__${b.id}__}" onclick="javascript:return confirm('你确定要删除吗?')" th:alt="删除">
                                             <i class="icon-remove red"></i>
                                         </a>
                                     </div>
@@ -90,52 +104,11 @@
 </div>
 
 
-<!-- basic scripts -->
+<!-- config -->
+<div th:include="common/config :: config"></div>
 
-<!--[if !IE]> -->
-
-<script src="/static/assets/js/jquery-2.0.3.min.js" th:src="@{assets/js/jquery-2.0.3.min.js}"></script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script src="/static/assets/js/jquery-1.10.2.min.js" th:src="@{assets/js/jquery-1.10.2.min.js}"></script>
-<![endif]-->
-
-<!--[if !IE]> -->
-
-<script type="text/javascript">
-    /*<![CDATA[*/
-    window.jQuery || document.write("<script src='/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
-    /*]]>*/
-</script>
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script type="text/javascript">
-    window.jQuery || document.write("<script src='/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
-</script>
-<![endif]-->
-
-<script type="text/javascript">
-    /*<![CDATA[*/
-    if("ontouchend" in document) document.write("<script src='/static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
-   /* ]]>*/
-</script>
-<script src="/static/assets/js/bootstrap.min.js" th:src="@{assets/js/bootstrap.min.js}"></script>
-<script src="/static/assets/js/typeahead-bs2.min.js" th:src="@{assets/js/typeahead-bs2.min.js}"></script>
-
-
-<!-- page specific plugin scripts -->
-
-<script src="/static/assets/js/jquery.colorbox-min.js" th:src="@{assets/js/jquery.colorbox-min.js}"></script>
-
-<script src="/static/assets/js/ace-elements.min.js" th:src="@{assets/js/ace-elements.min.js}"></script>
-<script src="/static/assets/js/ace.min.js" th:src="@{assets/js/ace.min.js}"></script>
-<script src="/static/assets/js/jquery-2.0.3.min.js" th:src="@{assets/js/jquery-2.0.3.min.js}"></script>
-<script src="/static/common/js/jqPaginator.js" th:src="@{common/js/jqPaginator.js}"></script>
-<!-- inline scripts related to this page -->
+<script th:src="@{/common/js/jqPaginator.js}"></script>
+<script th:src="@{/assets/js/jquery.colorbox-min.js}"></script>
 
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
@@ -182,16 +155,9 @@
         $('.ace-thumbnails [data-rel="colorbox"]').colorbox(colorbox_params);
         $("#cboxLoadingGraphic").append("<i class='icon-spinner orange'></i>");//let's add a custom loading icon
 
-        /**$(window).on('resize.colorbox', function() {
-		try {
-			//this function has been changed in recent versions of colorbox, so it won't work
-			$.fn.colorbox.load();//to redraw the current frame
-		} catch(e){}
-	});*/
     });
     /*]]>*/
 </script>
 
 </body>
 </html>
-<script>var _hmt = _hmt || [];(function(){var hm=document.createElement("script");hm.src = "//hm.baidu.com/hm.js?a43c39da34531f4da694d4499c5614d4";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm, s);})();</script>

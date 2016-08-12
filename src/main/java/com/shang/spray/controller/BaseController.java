@@ -2,6 +2,7 @@ package com.shang.spray.controller;
 
 import com.shang.spray.service.BeautifulService;
 import com.shang.spray.service.NewsService;
+import com.shang.spray.service.SourcesService;
 import com.shang.spray.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ public class BaseController {
     protected BeautifulService beautifulService;
     @Autowired
     protected UserService userService;
+    @Autowired
+    protected SourcesService sourcesService;
 
 
     public HashMap<String,Object> createMap() {

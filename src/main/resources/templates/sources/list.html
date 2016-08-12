@@ -31,9 +31,9 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="icon-home home-icon"></i>
-                        <a href="#">精选管理</a>
+                        <a href="#">来源管理</a>
                     </li>
-                    <li class="active" >精选列表</li>
+                    <li class="active" >来源列表</li>
                 </ul><!-- .breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -49,7 +49,7 @@
 
             <div class="page-content">
                 <div class="page-header">
-                    <h1>精选列表</h1>
+                    <h1>来源列表</h1>
                 </div><!-- /.page-header -->
 
                 <div class="row">
@@ -60,47 +60,33 @@
                                 <thead>
                                 <tr>
                                     <th>序号</th>
-                                    <th>标题</th>
                                     <th>来源</th>
-                                    <th>排序值</th>
-                                    <th>链接</th>
-                                    <th>标签</th>
+                                    <th>图片</th>
+                                    <th>状态</th>
                                     <th>添加时间</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                <tr th:each="n,nStat : ${news}">
+                                <tr th:each="n,nStat : ${sources}">
                                     <td th:text="${nStat.index+1}">1</td>
-                                    <td th:text="${n.title}">1</td>
-                                    <td th:text="${n.sources.source}">1</td>
-                                    <td th:text="${n.sort}">1</td>
-                                    <td th:text="${n.explicitLink==true?'是':'否'}">1</td>
-                                    <td >
-                                        <span class="label-holder">
-											<span class="label label-info" th:text="${n.statusName}">breakfast</span>
-                                        </span>
-                                        <span class="label-holder" th:if="${n.placedTop!=null}?${n.placedTop}">
-											<span class="label label-danger arrowed-in" >置顶</span>
-                                        </span>
-                                        <span class="label-holder" th:if="${n.recommend!=null}?${n.recommend}">
-											<span class="label label-success arrowed-in" >推荐</span>
-                                        </span>
-                                    </td>
+                                    <td th:text="${n.source}">1</td>
+                                    <td><img th:src="${n.sourceImage}" th:width="30" th:height="30"/></td>
+                                    <td th:text="${n.statusName}">1</td>
                                     <td th:text="${#dates.format(n.createDate, 'yyyy-MM-dd HH:mm:ss')}">1</td>
                                     <td>
                                         <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
 
-                                            <a class="green" th:href="@{/news/addLink(id=${n.id})}" alt="编辑">
+                                            <a class="green" th:href="@{/sources/addLink(id=${n.id})}" alt="编辑">
                                                 <i class="icon-pencil bigger-130"></i>
                                             </a>
 
-                                            <a class="blue" th:href="@{/news/closeNews/__${n.id}__}" th:alt="上下架">
+                                            <a class="green" th:href="@{/sources/closeSources/__${n.id}__}" th:alt="上下架">
                                                 <i class=" icon-lock bigger-130"></i>
                                             </a>
 
-                                            <a class="red" th:href="@{/news/delNews/__${n.id}__}" onclick="javascript:return confirm('你确定要删除吗?')" th:alt="删除">
+                                            <a class="red" th:href="@{/sources/delSources/__${n.id}__}" onclick="javascript:return confirm('你确定要删除吗?')" th:alt="删除">
                                                 <i class="icon-trash bigger-130"></i>
                                             </a>
                                         </div>
@@ -144,13 +130,13 @@
 
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    $("#news_list").addClass("active open");
-    $("#news_list_active").addClass("active");
+    $("#sources_list").addClass("active open");
+    $("#sources_list_active").addClass("active");
     jQuery(function($) {
         $.jqPaginator('#pagination1', {
-            totalPages: /*[[${news.totalPages}]]*/,
+            totalPages: /*[[${sources.totalPages}]]*/,
             visiblePages: 10,
-            currentPage: /*[[${news.number+1}]]*/,
+            currentPage: /*[[${sources.number+1}]]*/,
             first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
             prev: '<li class="prev"><a href="javascript:void(0);"><i class="arrow arrow2"></i>上一页</a></li>',
             next: '<li class="next"><a href="javascript:void(0);">下一页<i class="arrow arrow3"></i></a></li>',
@@ -158,7 +144,7 @@
             page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
             onPageChange: function (num, type) {
                 if (type=='change') {
-                    location.href="/news?page="+(num-1);
+                    location.href="/sources?page="+(num-1);
                 }
             }
         });

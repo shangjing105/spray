@@ -56,13 +56,37 @@
                         精选列表
                     </a>
                 </li>
-            </ul>
 
-            <ul class="submenu">
                 <li id="news_add_link_active">
                     <a th:href="@{/news/addLink}">
                         <i class="icon-double-angle-right"></i>
                         添加链接
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li id="sources_list">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-desktop"></i>
+                <span class="menu-text"> 来源管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li id="sources_list_active">
+                    <a th:href="@{/sources}">
+                        <i class="icon-double-angle-right"></i>
+                        来源列表
+                    </a>
+                </li>
+
+                <li id="sourcess_add_link_active">
+                    <a th:href="@{/sources/addLink}">
+                        <i class="icon-double-angle-right"></i>
+                        添加来源
                     </a>
                 </li>
             </ul>
@@ -81,6 +105,13 @@
                     <a th:href="@{/beautiful}">
                         <i class="icon-double-angle-right"></i>
                         美图列表
+                    </a>
+                </li>
+
+                <li id="beautiful_add_link_active">
+                    <a th:href="@{/beautiful/addLink}">
+                        <i class="icon-double-angle-right"></i>
+                        添加美图
                     </a>
                 </li>
 

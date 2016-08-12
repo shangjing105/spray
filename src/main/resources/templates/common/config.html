@@ -2,63 +2,38 @@
 
     <!-- basic scripts -->
 
-    <!--[if !IE]> -->
-
-    <script src="/static/assets/js/jquery-2.0.3.min.js" th:src="@{assets/js/jquery-2.0.3.min.js}"></script>
-
-    <!-- <![endif]-->
-
-    <!--[if IE]>
-  <script src="/static/assets/js/jquery-1.10.2.min.js" th:src="@{assets/js/jquery-1.10.2.min.js}"></script>
-    <![endif]-->
-
-    <!--[if !IE]> -->
-
+    <script th:src="@{/common/js/jquery-3.1.0.min.js}"></script>
     <script type="text/javascript">
         /*<![CDATA[*/
-        window.jQuery || document.write("<script src='/static/assets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
+        if("ontouchend" in document) document.write("<script th:src='@{/assets/js/jquery.mobile.custom.min.js}'>"+"<"+"script>");
         /*]]>*/
     </script>
-
-    <!-- <![endif]-->
-
-    <!--[if IE]>
-  <script type="text/javascript">
-    window.jQuery || document.write("<script src='/static/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
-  </script>
-    <![endif]-->
-
-    <script type="text/javascript">
-        /*<![CDATA[*/
-        if("ontouchend" in document) document.write("<script src='/static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
-        /*]]>*/
-    </script>
-    <script src="/static/assets/js/bootstrap.min.js" th:src="@{assets/js/bootstrap.min.js}"></script>
-    <script src="/static/assets/js/typeahead-bs2.min.js" th:src="@{assets/js/typeahead-bs2.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/typeahead-bs2.min.js}"></script>
 
     <!-- page specific plugin scripts -->
 
     <!--[if lte IE 8]>
-  <script src="/static/assets/js/excanvas.min.js" th:src="@{assets/js/excanvas.min.js}"></script>
+  <script th:src="@{/assets/js/excanvas.min.js}"></script>
     <![endif]-->
 
-    <script src="/static/assets/js/jquery-ui-1.10.3.custom.min.js" th:src="@{assets/js/jquery-ui-1.10.3.custom.min.js}"></script>
-    <script src="/static/assets/js/jquery.ui.touch-punch.min.js" th:src="@{assets/js/jquery.ui.touch-punch.min.js}"></script>
-    <script src="/static/assets/js/jquery.slimscroll.min.js" th:src="@{assets/js/jquery.slimscroll.min.js}"></script>
-    <script src="/static/assets/js/jquery.easy-pie-chart.min.js" th:src="@{assets/js/jquery.easy-pie-chart.min.js}"></script>
-    <script src="/static/assets/js/jquery.sparkline.min.js" th:src="@{assets/js/jquery.sparkline.min.js}"></script>
-    <script src="/static/assets/js/flot/jquery.flot.min.js" th:src="@{assets/js/flot/jquery.flot.min.js}"></script>
-    <script src="/static/assets/js/flot/jquery.flot.pie.min.js" th:src="@{assets/js/flot/jquery.flot.pie.min.js}"></script>
-    <script src="/static/assets/js/flot/jquery.flot.resize.min.js" th:src="@{assets/js/flot/jquery.flot.resize.min.js}"></script>
+    <script th:src="@{/assets/js/jquery-ui-1.10.3.custom.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.ui.touch-punch.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.slimscroll.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.easy-pie-chart.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.sparkline.min.js}"></script>
+    <script th:src="@{/assets/js/flot/jquery.flot.min.js}"></script>
+    <script th:src="@{/assets/js/flot/jquery.flot.pie.min.js}"></script>
+    <script th:src="@{/assets/js/flot/jquery.flot.resize.min.js}"></script>
 
     <!-- ace scripts -->
 
-    <script src="/static/assets/js/ace-elements.min.js" th:src="@{assets/js/ace-elements.min.js}"></script>
-    <script src="/static/assets/js/ace.min.js" th:src="@{assets/js/ace.min.js}"></script>
+    <script th:src="@{/assets/js/ace-elements.min.js}"></script>
+    <script th:src="@{/assets/js/ace.min.js}"></script>
 
     <!-- inline scripts related to this page -->
 
-    <script type="text/javascript">
+    <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
         jQuery(function($) {
             $('.easy-pie-chart.percentage').each(function(){

@@ -1,6 +1,9 @@
 package com.shang.spray.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * info:
@@ -8,6 +11,48 @@ import javax.persistence.Entity;
  */
 @Entity
 public class News extends BaseEntity{
+
+
+     public enum StatusEnum {
+        SHANGJIA(1,"上架"),
+        XIAJIA(2,"下架");
+
+        private Integer code;
+
+        private String name;
+
+        StatusEnum(Integer code, String name) {
+            this.code = code;
+            this.name = name;
+        }
+
+
+
+         public Integer getCode() {
+             return code;
+         }
+
+         public void setCode(Integer code) {
+             this.code = code;
+         }
+
+         public String getName() {
+             return name;
+         }
+
+         public void setName(String name) {
+             this.name = name;
+         }
+     }
+
+    public String getStatusName() {
+        for (StatusEnum statusEnum : StatusEnum.values()) {
+            if (statusEnum.getCode().equals(this.status)) {
+                return statusEnum.getName();
+            }
+        }
+        return null;
+    }
 
     /**
      * 所属类别
@@ -43,15 +88,6 @@ public class News extends BaseEntity{
     private String author;
 
     /**
-     * 来源
-     */
-    private String source;
-    /**
-     * 来源图片
-     */
-    private String sourceImage;
-
-    /**
      * 标签
      */
     private String label;
@@ -81,6 +117,18 @@ public class News extends BaseEntity{
      */
     private String content;
 
+    @OneToOne
+    @JoinColumn(name = "sources_id")
+    private Sources sources;
+
+
+    public Sources getSources() {
+        return sources;
+    }
+
+    public void setSources(Sources sources) {
+        this.sources = sources;
+    }
 
     public Integer getTypeId() {
         return typeId;
@@ -130,21 +178,6 @@ public class News extends BaseEntity{
         this.author = author;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getSourceImage() {
-        return sourceImage;
-    }
-
-    public void setSourceImage(String sourceImage) {
-        this.sourceImage = sourceImage;
-    }
 
     public String getLabel() {
         return label;
@@ -201,4 +234,6 @@ public class News extends BaseEntity{
     public void setExplicitLink(Boolean explicitLink) {
         this.explicitLink = explicitLink;
     }
+
+
 }
