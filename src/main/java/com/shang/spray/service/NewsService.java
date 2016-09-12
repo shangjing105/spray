@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
  * Created by shang on 16/7/8.
  */
 @Service
-public class NewsService extends BaseService<News>{
-
+public class NewsService extends BaseService<News> {
 
 }

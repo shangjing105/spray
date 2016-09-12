@@ -31,9 +31,9 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="icon-home home-icon"></i>
-                        <a href="#">精选管理</a>
+                        <a href="#">配置管理</a>
                     </li>
-                    <li class="active" >添加链接</li>
+                    <li class="active" >添加配置</li>
                 </ul><!-- .breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -54,56 +54,31 @@
 
                         <div class="table-responsive">
 
-                            <form class="form-horizontal" role="form" th:action="@{/news/addLink}" method="post">
-                                <input th:name="id" type="hidden" th:value="${news!=null and news.id != null}?${news.id}"/>
-                                <input th:name="explicitLink" type="hidden" th:value="true"/>
-
+                            <form class="form-horizontal" role="form" th:action="@{/config/addLink}" method="post">
+                                <input th:name="id" type="hidden" th:value="${config!=null and config.id != null}?${config.id}"/>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 标题 </label>
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 代码 </label>
 
                                     <div class="col-sm-9">
-                                        <input type="text" id="form-field-1"  th:name="title" th:value="${news!=null and news.title != null}?${news.title}" placeholder="标题" class="col-xs-10 col-sm-5" />
+                                        <input type="text" id="form-field-1"  th:name="code" th:value="${config!=null and config.code!=null}?${config.code}" placeholder="代码" class="col-xs-10 col-sm-5" />
                                     </div>
                                 </div>
 
+                                <div class="space-4"></div>
+
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 链接地址 </label>
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 描述 </label>
 
                                     <div class="col-sm-6">
-                                        <textarea class="form-control" rows="5" id="form-field-8" th:name="link" th:text="${news!=null and news.link != null}?${news.link}" placeholder="链接地址"></textarea>
+                                        <textarea class="form-control" id="form-field-8" th:name="info" th:text="${config!=null and config.info!= null}?${config.info}" placeholder="描述"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 排序 </label>
-
-                                    <div class="col-sm-9">
-                                        <input type="text" id="form-field-1"  th:name="sort" th:value="${news!=null and news.sort != null}?${news.sort}" placeholder="排序" class="col-xs-10 col-sm-5" />
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 来源 </label>
+                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 内容 </label>
 
                                     <div class="col-sm-6">
-                                        <select class="width-80 form-control" id="form-field-select-3" th:name="sources.id">
-                                            <option th:each="s:${sources}" th:text="${s.source}"  th:value="${s.id}"></option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 设置 </label>
-
-                                    <div class="col-sm-6">
-                                        <label>
-                                            <input name="form-field-checkbox" id="placedTop" type="checkbox" class="ace" th:name="placedTop" th:value="true"/>
-                                            <span class="lbl"> 置顶</span>
-                                        </label>
-                                        <label>
-                                            <input name="form-field-checkbox" id="recommend" type="checkbox" class="ace" th:name="recommend" th:value="true"/>
-                                            <span class="lbl"> 推荐</span>
-                                        </label>
+                                        <textarea class="form-control" rows="10" id="form-field-8" th:name="content" th:text="${config!=null and config.content!= null}?${config.content}" placeholder="内容"></textarea>
                                     </div>
                                 </div>
 
@@ -146,15 +121,10 @@
 
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    $("#news_list").addClass("active open");
-    $("#news_add_link_active").addClass("active");
+    $("#config_list").addClass("active open");
+    $("#config_add_link_active").addClass("active");
     jQuery(function($) {
 
-        if (/*[[${news!=null}]]*/) {
-            $("#form-field-select-3").val(/*[[${news!=null and news.sources != null}?${news.sources.id}]]*/);
-            $("#recommend").attr("checked",/*[[${news!=null and news.recommend != null}?${news.recommend}]]*/);
-            $("#placedTop").attr("checked",/*[[${news!=null and news.placedTop != null}?${news.placedTop}]]*/);
-        }
 
     });
     /*]]>*/

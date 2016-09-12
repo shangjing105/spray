@@ -1,10 +1,13 @@
 package com.shang.spray.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * info:
+ * Created by shang on 16/8/30.
+ */
 @Entity
-public class Sources extends BaseEntity{
+public class Config extends BaseEntity {
 
 
     public enum StatusEnum {
@@ -47,16 +50,19 @@ public class Sources extends BaseEntity{
         }
         return null;
     }
-    /**
-     * 来源
-     */
-    private String source;
 
     /**
-     * 来源图片
+     * 代码
      */
-    @Column
-    private String sourceImage;
+    private String code;
+    /**
+     * 描述
+     */
+    private String info;
+    /**
+     * 内容
+     */
+    private String content;
 
     /**
      * 状态
@@ -64,64 +70,35 @@ public class Sources extends BaseEntity{
     private Integer status;
 
 
-    public Sources() {
+    public String getCode() {
+        return code;
     }
 
-    public Sources(Integer id) {
-        this.setId(id);
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    /**
-     * 获取来源
-     *
-     * @return source - 来源
-     */
-    public String getSource() {
-        return source;
+    public String getContent() {
+        return content;
     }
 
-    /**
-     * 设置来源
-     *
-     * @param source 来源
-     */
-    public void setSource(String source) {
-        this.source = source;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    /**
-     * 获取来源图片
-     *
-     * @return source_image - 来源图片
-     */
-    public String getSourceImage() {
-        return sourceImage;
-    }
-
-    /**
-     * 设置来源图片
-     *
-     * @param sourceImage 来源图片
-     */
-    public void setSourceImage(String sourceImage) {
-        this.sourceImage = sourceImage;
-    }
-
-    /**
-     * 获取状态
-     *
-     * @return status - 状态
-     */
     public Integer getStatus() {
         return status;
     }
 
-    /**
-     * 设置状态
-     *
-     * @param status 状态
-     */
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
     }
 }

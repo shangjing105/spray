@@ -1,6 +1,7 @@
 package com.shang.spray.service;
 
 import com.shang.spray.repository.BaseRepository;
+import com.shang.spray.repository.NewsRepository;
 import com.shang.spray.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,8 @@ public class BaseService<T> {
     protected BaseRepository<T> baseRepository;
     @Autowired
     protected UserRepository userRepository;
+    @Autowired
+    protected NewsRepository newsRepository;
 
 
     public boolean exists(Integer id) {

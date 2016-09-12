@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,7 +32,7 @@ public class BeautifulController extends BaseController {
     public ModelAndView index(@RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "12") Integer size,ModelAndView view) {
         Map<String, Object> map = createMap();
         try {
-            Sort sort = new Sort(Sort.Direction.DESC, "placedTop", "recommend", "id");
+            Sort sort = new Sort(Sort.Direction.DESC, "placedTop", "recommend", "createDate");
             Pageable pageable = new PageRequest(page, size, sort);
             view.addObject("beautiful",beautifulService.findAll(pageable));
         } catch (Exception e) {
@@ -60,6 +62,8 @@ public class BeautifulController extends BaseController {
     @RequestMapping(value = "/addLink",method = RequestMethod.POST)
     public ModelAndView addLink(Beautiful beautiful, ModelAndView view) {
         beautiful.setSources(sourcesService.findOne(beautiful.getSources().getId()));
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        beautiful.setAuthor(user.getUsername());
         beautiful.setTypeId(1);
         beautiful.setStatus(1);
         beautiful.setCreateDate(new Date());

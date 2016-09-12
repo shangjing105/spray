@@ -5,7 +5,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Beautiful extends BaseEntity{
+public class Funny extends BaseEntity{
 
     public enum StatusEnum {
         SHANGJIA(1,"上架"),
@@ -40,7 +40,7 @@ public class Beautiful extends BaseEntity{
     }
 
     public String getStatusName() {
-        for (Beautiful.StatusEnum statusEnum : Beautiful.StatusEnum.values()) {
+        for (StatusEnum statusEnum : StatusEnum.values()) {
             if (statusEnum.getCode().equals(this.status)) {
                 return statusEnum.getName();
             }
@@ -49,33 +49,41 @@ public class Beautiful extends BaseEntity{
     }
 
     /**
-     * 类型id
+     * 所属类别
      */
     private Integer typeId;
 
     /**
-     * 名称
+     * 标题
      */
     private String title;
 
     /**
-     * 链接
+     * 排序
      */
-    private String link;
-
-    /**
-     * 来源
-     */
-    @OneToOne
-    @JoinColumn(name = "sources_id")
-    private Sources sources;
+    private Integer sort;
 
     /**
      * 作者
      */
     private String author;
 
+    /**
+     * 来源id
+     */
+    @OneToOne
+    @JoinColumn(name = "sources_id")
+    private Sources sources;
+
+    /**
+     * 标签
+     */
     private String label;
+
+    /**
+     * 点赞
+     */
+    private Integer thumbUp;
 
     /**
      * 是否置顶
@@ -92,64 +100,83 @@ public class Beautiful extends BaseEntity{
      */
     private Integer status;
 
+
     /**
-     * 专辑id(暂未使用)
+     * 内容
      */
-    private Integer albumid;
+    private String content;
 
 
     /**
-     * 获取类型id
+     * 获取所属类别
      *
-     * @return type_id - 类型id
+     * @return type_id - 所属类别
      */
     public Integer getTypeId() {
         return typeId;
     }
 
     /**
-     * 设置类型id
+     * 设置所属类别
      *
-     * @param typeId 类型id
+     * @param typeId 所属类别
      */
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
     }
 
     /**
-     * 获取名称
+     * 获取标题
      *
-     * @return title - 名称
+     * @return title - 标题
      */
     public String getTitle() {
         return title;
     }
 
     /**
-     * 设置名称
+     * 设置标题
      *
-     * @param title 名称
+     * @param title 标题
      */
     public void setTitle(String title) {
         this.title = title;
     }
 
     /**
-     * 获取链接
+     * 获取排序
      *
-     * @return link - 链接
+     * @return sort - 排序
      */
-    public String getLink() {
-        return link;
+    public Integer getSort() {
+        return sort;
     }
 
     /**
-     * 设置链接
+     * 设置排序
      *
-     * @param link 链接
+     * @param sort 排序
      */
-    public void setLink(String link) {
-        this.link = link;
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    /**
+     * 获取作者
+     *
+     * @return author - 作者
+     */
+    public String getAuthor() {
+        return author;
+    }
+
+    /**
+     * 设置作者
+     *
+     * @param author 作者
+     */
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public Sources getSources() {
@@ -161,17 +188,39 @@ public class Beautiful extends BaseEntity{
     }
 
     /**
-     * @return label
+     * 获取标签
+     *
+     * @return label - 标签
      */
     public String getLabel() {
         return label;
     }
 
     /**
-     * @param label
+     * 设置标签
+     *
+     * @param label 标签
      */
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    /**
+     * 获取点赞
+     *
+     * @return thumb_up - 点赞
+     */
+    public Integer getThumbUp() {
+        return thumbUp;
+    }
+
+    /**
+     * 设置点赞
+     *
+     * @param thumbUp 点赞
+     */
+    public void setThumbUp(Integer thumbUp) {
+        this.thumbUp = thumbUp;
     }
 
     /**
@@ -228,29 +277,23 @@ public class Beautiful extends BaseEntity{
         this.status = status;
     }
 
-    /**
-     * 获取专辑id(暂未使用)
-     *
-     * @return albumid - 专辑id(暂未使用)
-     */
-    public Integer getAlbumid() {
-        return albumid;
-    }
+
 
     /**
-     * 设置专辑id(暂未使用)
+     * 获取内容
      *
-     * @param albumid 专辑id(暂未使用)
+     * @return content - 内容
      */
-    public void setAlbumid(Integer albumid) {
-        this.albumid = albumid;
+    public String getContent() {
+        return content;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
+    /**
+     * 设置内容
+     *
+     * @param content 内容
+     */
+    public void setContent(String content) {
+        this.content = content;
     }
 }

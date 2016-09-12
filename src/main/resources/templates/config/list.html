@@ -31,9 +31,9 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="icon-home home-icon"></i>
-                        <a href="#">来源管理</a>
+                        <a href="#">配置管理</a>
                     </li>
-                    <li class="active" >来源列表</li>
+                    <li class="active" >配置列表</li>
                 </ul><!-- .breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -49,7 +49,7 @@
 
             <div class="page-content">
                 <div class="page-header">
-                    <h1>来源列表</h1>
+                    <h1>配置列表</h1>
                 </div><!-- /.page-header -->
 
                 <div class="row">
@@ -60,8 +60,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>来源</th>
-                                    <th>图片</th>
+                                    <th>代码</th>
+                                    <th>描述</th>
+                                    <th>内容</th>
                                     <th>状态</th>
                                     <th>修改时间</th>
                                     <th>操作</th>
@@ -69,24 +70,25 @@
                                 </thead>
 
                                 <tbody>
-                                <tr th:each="n,nStat : ${sources}">
+                                <tr th:each="n,nStat : ${configs}">
                                     <td th:text="${n.id}">1</td>
-                                    <td th:text="${n.source}">1</td>
-                                    <td><img th:src="${n.sourceImage}" th:width="30" th:height="30"/></td>
+                                    <td th:text="${n.code}">1</td>
+                                    <td th:text="${n.info}">1</td>
+                                    <td th:text="${n.content}">1</td>
                                     <td th:text="${n.statusName}">1</td>
                                     <td th:text="${#dates.format(n.modifyDate, 'yyyy-MM-dd HH:mm:ss')}">1</td>
                                     <td>
                                         <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
 
-                                            <a class="green" th:href="@{/sources/addLink(id=${n.id})}" alt="编辑">
+                                            <a class="green" th:href="@{/config/addLink(id=${n.id})}" alt="编辑">
                                                 <i class="icon-pencil bigger-130"></i>
                                             </a>
 
-                                            <a class="green" th:href="@{/sources/closeSources/__${n.id}__}" th:alt="上下架">
+                                            <a class="green" th:href="@{/config/closeSources/__${n.id}__}" th:alt="上下架">
                                                 <i class=" icon-lock bigger-130"></i>
                                             </a>
 
-                                            <a class="red" th:href="@{/sources/delSources/__${n.id}__}" onclick="javascript:return confirm('你确定要删除吗?')" th:alt="删除">
+                                            <a class="red" th:href="@{/config/del/__${n.id}__}" onclick="javascript:return confirm('你确定要删除吗?')" th:alt="删除">
                                                 <i class="icon-trash bigger-130"></i>
                                             </a>
                                         </div>
@@ -130,13 +132,13 @@
 
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    $("#sources_list").addClass("active open");
-    $("#sources_list_active").addClass("active");
+    $("#config_list").addClass("active open");
+    $("#config_list_active").addClass("active");
     jQuery(function($) {
         $.jqPaginator('#pagination1', {
-            totalPages: /*[[${sources.totalPages}]]*/,
+            totalPages: /*[[${configs.totalPages}]]*/,
             visiblePages: 10,
-            currentPage: /*[[${sources.number+1}]]*/,
+            currentPage: /*[[${configs.number+1}]]*/,
             first: '<li class="first"><a href="javascript:void(0);">首页</a></li>',
             prev: '<li class="prev"><a href="javascript:void(0);"><i class="arrow arrow2"></i>上一页</a></li>',
             next: '<li class="next"><a href="javascript:void(0);">下一页<i class="arrow arrow3"></i></a></li>',
@@ -144,7 +146,7 @@
             page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
             onPageChange: function (num, type) {
                 if (type=='change') {
-                    location.href="/sources?page="+(num-1);
+                    location.href="/config?page="+(num-1);
                 }
             }
         });

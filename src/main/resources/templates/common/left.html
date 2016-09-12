@@ -63,34 +63,18 @@
                         添加链接
                     </a>
                 </li>
-            </ul>
-        </li>
 
-
-        <li id="sources_list">
-            <a href="#" class="dropdown-toggle">
-                <i class="icon-desktop"></i>
-                <span class="menu-text"> 来源管理 </span>
-
-                <b class="arrow icon-angle-down"></b>
-            </a>
-
-            <ul class="submenu">
-                <li id="sources_list_active">
-                    <a th:href="@{/sources}">
+                <li id="news_add_active">
+                    <a th:href="@{/news/addNews}">
                         <i class="icon-double-angle-right"></i>
-                        来源列表
-                    </a>
-                </li>
-
-                <li id="sourcess_add_link_active">
-                    <a th:href="@{/sources/addLink}">
-                        <i class="icon-double-angle-right"></i>
-                        添加来源
+                        添加内容
                     </a>
                 </li>
             </ul>
         </li>
+
+
+
 
         <li id="beautiful_list">
             <a href="#" class="dropdown-toggle">
@@ -118,6 +102,32 @@
             </ul>
         </li>
 
+        <li id="funny_list">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-tag"></i>
+                <span class="menu-text"> 搞笑管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li id="funny-list-active">
+                    <a th:href="@{/funny}">
+                        <i class="icon-double-angle-right"></i>
+                        搞笑列表
+                    </a>
+                </li>
+
+                <li id="funny_add_link_active">
+                    <a th:href="@{/funny/addLink}">
+                        <i class="icon-double-angle-right"></i>
+                        添加搞笑
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="icon-edit"></i>
@@ -137,22 +147,53 @@
             </ul>
         </li>
 
-        <li>
+        <li id="sources_list">
             <a href="#" class="dropdown-toggle">
-                <i class="icon-tag"></i>
-                <span class="menu-text"> 笑话管理 </span>
+                <i class="icon-desktop"></i>
+                <span class="menu-text"> 来源管理 </span>
 
                 <b class="arrow icon-angle-down"></b>
             </a>
 
             <ul class="submenu">
-                <li id="joke-list-active">
-                    <a href="profile.html">
+                <li id="sources_list_active">
+                    <a th:href="@{/sources}">
                         <i class="icon-double-angle-right"></i>
-                        笑话列表
+                        来源列表
                     </a>
                 </li>
 
+                <li id="sourcess_add_link_active">
+                    <a th:href="@{/sources/addLink}">
+                        <i class="icon-double-angle-right"></i>
+                        添加来源
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li id="config_list">
+            <a href="#" class="dropdown-toggle">
+                <i class="icon-desktop"></i>
+                <span class="menu-text"> 配置管理 </span>
+
+                <b class="arrow icon-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                <li id="config_list_active">
+                    <a th:href="@{/config}">
+                        <i class="icon-double-angle-right"></i>
+                        配置列表
+                    </a>
+                </li>
+
+                <li id="config_add_link_active">
+                    <a th:href="@{/config/addLink}">
+                        <i class="icon-double-angle-right"></i>
+                        添加配置
+                    </a>
+                </li>
             </ul>
         </li>
 

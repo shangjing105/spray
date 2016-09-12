@@ -8,10 +8,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,9 +34,16 @@ public class BeautifulApiController extends BaseController {
     public Map<String,Object> index(BaseApiResult result, @RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "12") Integer size) {
         Map<String,Object> map=createMap();
         try {
-            Sort sort=new Sort(Sort.Direction.DESC,"placedTop","recommend","id");
+            Sort sort=new Sort(Sort.Direction.DESC,"placedTop","recommend","createDate");
+            Specification<Beautiful> specification=new Specification<Beautiful>() {
+                @Override
+                public Predicate toPredicate(Root<Beautiful> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                    criteriaQuery.where(criteriaBuilder.equal(root.get("status"),Beautiful.StatusEnum.SHANGJIA.getCode()));
+                    return null;
+                }
+            };
             Pageable pageable=new PageRequest(page,size,sort);
-            Page<Beautiful> beautiful=beautifulService.findAll(pageable);
+            Page<Beautiful> beautiful=beautifulService.findAll(specification,pageable);
             List<Map<String,List<Beautiful>>> beautifulList=new ArrayList<>();
             Map<String,List<Beautiful>> stulist=new HashMap<>();
             List<Beautiful> list=new ArrayList<>();

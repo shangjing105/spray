@@ -1,9 +1,6 @@
 package com.shang.spray.controller;
 
-import com.shang.spray.service.BeautifulService;
-import com.shang.spray.service.NewsService;
-import com.shang.spray.service.SourcesService;
-import com.shang.spray.service.UserService;
+import com.shang.spray.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +26,10 @@ public class BaseController {
     protected UserService userService;
     @Autowired
     protected SourcesService sourcesService;
+    @Autowired
+    protected FunnyService funnyService;
+    @Autowired
+    protected ConfigService configService;
 
 
     public HashMap<String,Object> createMap() {
