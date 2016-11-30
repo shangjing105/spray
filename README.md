@@ -2,11 +2,11 @@
 
 **这里放上几张后台管理的界面**
 
-![login](http://upload-images.jianshu.io/upload_images/2728175-54884ce28bc57ec6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![login](http://o6n64wdk9.bkt.clouddn.com/e96774dd60f946408e94a0b6d9eb7dbc.png)
 
-![main](http://upload-images.jianshu.io/upload_images/2728175-35ff6a3536552def.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![main](http://o6n64wdk9.bkt.clouddn.com/49cb6211751b4ba0b8669a1887dd88b7.png)
 
-![123](http://upload-images.jianshu.io/upload_images/2728175-0f9a59de45c1e7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![123](http://o6n64wdk9.bkt.clouddn.com/7e14c34a2c814cf789c9198a38372840.png)
 
 ## APP下载地址
 
