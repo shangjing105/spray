@@ -18,7 +18,7 @@
         <javaModelGenerator targetPackage="com.shang.spray.entity" targetProject="src/main/java">
         </javaModelGenerator>
 
-        <table tableName="funny" />
+        <table tableName="type" />
 
 
     </context>

@@ -4,6 +4,7 @@ import com.shang.spray.controller.BaseController;
 import com.shang.spray.entity.Beautiful;
 import com.shang.spray.entity.News;
 import com.shang.spray.entity.Sources;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -17,7 +18,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,12 +32,27 @@ import java.util.Map;
 public class BeautifulController extends BaseController {
 
     @RequestMapping("")
-    public ModelAndView index(@RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "12") Integer size,ModelAndView view) {
-        Map<String, Object> map = createMap();
+    public ModelAndView index(@RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "12") Integer size,
+                              @RequestParam(defaultValue = "1") Integer status,ModelAndView view) {
         try {
+            Specification<Beautiful> specification=new Specification<Beautiful>() {
+                @Override
+                public Predicate toPredicate(Root<Beautiful> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                    List<Predicate> list = new ArrayList<>();
+                    if (status!=null&&status!=-1) {
+                        list.add(criteriaBuilder.equal(root.get("status"),status));
+                    }
+                    Predicate[] p = new Predicate[list.size()];
+                    return criteriaBuilder.and(list.toArray(p));
+                }
+            };
+
             Sort sort = new Sort(Sort.Direction.DESC, "placedTop", "recommend", "createDate");
             Pageable pageable = new PageRequest(page, size, sort);
-            view.addObject("beautiful",beautifulService.findAll(pageable));
+
+            view.addObject("beautiful",beautifulService.findAll(specification,pageable));
+            view.addObject("status",status);
+
         } catch (Exception e) {
             _logger.error(getTrace(e));
         }

@@ -30,6 +30,8 @@ public class BaseController {
     protected FunnyService funnyService;
     @Autowired
     protected ConfigService configService;
+    @Autowired
+    protected TypeService typeService;
 
 
     public HashMap<String,Object> createMap() {

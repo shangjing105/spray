@@ -30,7 +30,8 @@ import java.util.List;
 public class NewsController extends BaseController {
 
     @RequestMapping("")
-    public ModelAndView index(@RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "10") Integer size,Integer status,String search,ModelAndView view) {
+    public ModelAndView index(@RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "10") Integer size,
+                              @RequestParam(defaultValue = "1") Integer status,String search,ModelAndView view) {
         try {
             Specification<News> specification=new Specification<News>() {
                 @Override
@@ -129,5 +130,7 @@ public class NewsController extends BaseController {
         view.setViewName("redirect:/news");
         return view;
     }
+
+
 
 }

@@ -36,7 +36,7 @@ public class NewsScheduled {
      * 开发者头条
      */
     ////[秒] [分] [小时] [日] [月] [周] [年]
-    @Scheduled(cron = "0 0 22 * * ?")
+    @Scheduled(cron = "0 0 0/3 * * ? ")//从0点开始,每3个小时执行一次
     public void developersScheduled() {
         Specification<Config> specification = new Specification<Config>() {
             @Override
@@ -61,7 +61,7 @@ public class NewsScheduled {
     /**
      * 简书
      */
-    @Scheduled(cron = "0 0 23 * * ?")
+    @Scheduled(cron = "0 0 0/2 * * ? ")//从0点开始,每2个小时执行一次
     public void jianShuScheduled() {
         Specification<Config> specification = new Specification<Config>() {
             @Override
@@ -86,7 +86,7 @@ public class NewsScheduled {
     /**
      * 知乎发现
      */
-    @Scheduled(cron = "0 0 21 * * ?")
+    @Scheduled(cron = "0 0 0/4 * * ? ")//从0点开始,每4个小时执行一次
     public void zhiHuScheduled() {
         Specification<Config> specification = new Specification<Config>() {
             @Override

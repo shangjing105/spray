@@ -43,7 +43,7 @@ public class BeautifulApiController extends BaseController {
                 }
             };
             Pageable pageable=new PageRequest(page,size,sort);
-            Page<Beautiful> beautiful=beautifulService.findAll(specification,pageable);
+            Page<Beautiful> beautiful=beautifulService.findAllApi(specification,pageable);
             List<Map<String,List<Beautiful>>> beautifulList=new ArrayList<>();
             Map<String,List<Beautiful>> stulist=new HashMap<>();
             List<Beautiful> list=new ArrayList<>();

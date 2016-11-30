@@ -1,8 +1,10 @@
 package com.shang.spray.common.processor;
 
+import com.shang.spray.common.utils.Constant;
 import com.shang.spray.entity.News;
 import com.shang.spray.entity.Sources;
 import com.shang.spray.pipeline.NewsPipeline;
+import org.apache.commons.lang3.StringUtils;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -32,12 +34,15 @@ public class JianShuProcessor implements PageProcessor {
             for (Selectable s : list) {
                 String title=s.xpath("//div/h4/a/text()").toString();
                 String link=s.xpath("//div/h4").links().toString();
-                News news=new News();
-                news.setTitle(title);
-                news.setInfo(title);
-                news.setLink(link);
-                news.setSources(new Sources(5));
-                page.putField("news"+title, news);
+                if (StringUtils.isNotEmpty(title) && StringUtils.isNotEmpty(link)) {
+                    News news=new News();
+                    news.setTitle(title);
+                    news.setInfo(title);
+                    news.setLink(link);
+                    news.setTypeId(Constant.Type_JianShu);
+                    news.setSources(new Sources(Constant.Sources_JianShu));
+                    page.putField("news"+title, news);
+                }
             }
         }
     }

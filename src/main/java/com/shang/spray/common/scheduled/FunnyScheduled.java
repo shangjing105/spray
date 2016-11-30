@@ -32,7 +32,7 @@ public class FunnyScheduled {
      * 段子哥
      */
     ////[秒] [分] [小时] [日] [月] [周] [年]
-    @Scheduled(cron = "0 0 2,8,14,20 * * ?")
+    @Scheduled(cron = "0 0 0/4 * * ? ")//从0点开始,每4个小时执行一次
     public void duanZiGeScheduled() {
         Specification<Config> specification=new Specification<Config>() {
             @Override

@@ -1,7 +1,9 @@
 package com.shang.spray.common.processor;
 
+import com.shang.spray.common.utils.Constant;
 import com.shang.spray.entity.News;
 import com.shang.spray.entity.Sources;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -37,12 +39,15 @@ public class DevelopersProcessor implements PageProcessor {
         } else {
             String title=page.getHtml().xpath("//div[@class='content']/h3/a/text()").toString();
             String link=page.getHtml().regex(url).toString();
-            News news=new News();
-            news.setTitle(title);
-            news.setInfo(title);
-            news.setLink(link);
-            news.setSources(new Sources(2));
-            page.putField("news", news);
+            if (StringUtils.isNotEmpty(title) && StringUtils.isNotEmpty(link)) {
+                News news = new News();
+                news.setTitle(title);
+                news.setInfo(title);
+                news.setLink(link);
+                news.setTypeId(Constant.Type_KaiFaZhe);
+                news.setSources(new Sources(Constant.Sources_KaiFaZhe));
+                page.putField("news", news);
+            }
         }
 
     }

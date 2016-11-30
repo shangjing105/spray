@@ -32,7 +32,7 @@ public class BeautifulScheduled {
      * 3G壁纸站
      */
     ////[秒] [分] [小时] [日] [月] [周] [年]
-    @Scheduled(cron = "0 0 0,6,12,18 * * ?")
+    @Scheduled(cron = "0 0 0/4 * * ? ")//从0点开始,每4个小时执行一次
     public void wallScheduled() {
         Specification<Config> specification=new Specification<Config>() {
             @Override

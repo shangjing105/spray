@@ -1,6 +1,7 @@
 package com.shang.spray.controller.manage;
 
 import com.shang.spray.controller.BaseController;
+import com.shang.spray.entity.Beautiful;
 import com.shang.spray.entity.Funny;
 import com.shang.spray.entity.Sources;
 import org.springframework.security.core.userdetails.User;
@@ -16,7 +17,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * info:
@@ -27,11 +30,25 @@ import java.util.Date;
 public class FunnyController  extends BaseController{
 
     @RequestMapping("")
-    public ModelAndView index(@RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "10") Integer size, ModelAndView view) {
+    public ModelAndView index(@RequestParam(defaultValue = "0")Integer page, @RequestParam(defaultValue = "10") Integer size,
+                              @RequestParam(defaultValue = "1") Integer status,ModelAndView view) {
         try {
+            Specification<Funny> specification=new Specification<Funny>() {
+                @Override
+                public Predicate toPredicate(Root<Funny> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                    List<Predicate> list = new ArrayList<>();
+                    if (status!=null&&status!=-1) {
+                        list.add(criteriaBuilder.equal(root.get("status"),status));
+                    }
+                    Predicate[] p = new Predicate[list.size()];
+                    return criteriaBuilder.and(list.toArray(p));
+                }
+            };
             Sort sort=new Sort(Sort.Direction.DESC,"placedTop","recommend","createDate").and(new Sort(Sort.Direction.ASC,"sort"));
             Pageable pageable=new PageRequest(page,size,sort);
-            view.addObject("funny",funnyService.findAll(pageable));
+            view.addObject("funny",funnyService.findAll(specification,pageable));
+            view.addObject("status",status);
+
         } catch (Exception e) {
             _logger.error(getTrace(e));
         }

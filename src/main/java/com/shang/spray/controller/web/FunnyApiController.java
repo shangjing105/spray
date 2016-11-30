@@ -42,7 +42,7 @@ public class FunnyApiController extends BaseController{
                 }
             };
             Pageable pageable=new PageRequest(page,size,sort);
-            Page<Funny> funnies= funnyService.findAll(specification,pageable);
+            Page<Funny> funnies= funnyService.findAllApi(specification,pageable);
             map.put("funny",funnies.getContent());
             map.put("last",funnies.isLast());
             map.put("result", ModelHelper.OK(result));

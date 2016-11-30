@@ -1,8 +1,6 @@
 package com.shang.spray.service;
 
-import com.shang.spray.repository.BaseRepository;
-import com.shang.spray.repository.NewsRepository;
-import com.shang.spray.repository.UserRepository;
+import com.shang.spray.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -25,6 +24,14 @@ public class BaseService<T> {
     protected UserRepository userRepository;
     @Autowired
     protected NewsRepository newsRepository;
+    @Autowired
+    protected TypeRepository typeRepository;
+    @Autowired
+    protected BeautifulRepository beautifulRepository;
+    @Autowired
+    protected FunnyRepository funnyRepository;
+    @Autowired
+    protected SourcesRepository sourcesRepository;
 
 
     public boolean exists(Integer id) {

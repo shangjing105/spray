@@ -1,7 +1,9 @@
 package com.shang.spray.common.processor;
 
+import com.shang.spray.common.utils.Constant;
 import com.shang.spray.entity.Beautiful;
 import com.shang.spray.entity.Sources;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -34,8 +36,10 @@ public class WallProcessor implements PageProcessor {
         } else {
             Beautiful beautiful=new Beautiful();
             beautiful.setLink(page.getHtml().xpath("//div[@class='imgtitlec']").links().toString());
-            beautiful.setSources(new Sources(4));
-            page.putField("beautiful", beautiful);
+            beautiful.setSources(new Sources(Constant.Sources_3GBiZhi));
+            if (StringUtils.isNotEmpty(beautiful.getLink())) {
+                page.putField("beautiful", beautiful);
+            }
         }
 
     }

@@ -36,15 +36,6 @@
                     <li class="active" >美图列表</li>
                 </ul><!-- .breadcrumb -->
 
-                <div class="nav-search" id="nav-search">
-                    <form class="form-search">
-                                        <span class="input-icon">
-                                            <input type="text" placeholder="Search ..." class="nav-search-input"
-                                                   id="nav-search-input" autocomplete="off"/>
-                                            <i class="icon-search nav-search-icon"></i>
-                                        </span>
-                    </form>
-                </div><!-- #nav-search -->
             </div>
 
             <div class="page-content">
@@ -54,6 +45,17 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="row-fluid">
+                            <div class="row">
+                                <div class="col-sm-1"><div id="sample-table-2_length" class="dataTables_length">
+                                    <label>
+                                        <select size="1" id="status" aria-controls="sample-table-2">
+                                            <option value="-1" selected="selected">全部</option>
+                                            <option value="1">上架</option>
+                                            <option value="2">下架</option>
+                                        </select>
+                                    </label>
+                                </div></div>
+                            </div>
                             <ul class="ace-thumbnails">
                                 <li th:each="b : ${beautiful}">
                                     <a  th:href="@{${b.link}}" title="Photo Title" data-rel="colorbox">
@@ -115,6 +117,8 @@
     /*<![CDATA[*/
     $("#beautiful_list").addClass("active open");
     $("#beautiful_list_active").addClass("active");
+    $("#status").val(/*[[${status}]]*/);
+
     jQuery(function($) {
         $.jqPaginator('#pagination1', {
             totalPages: /*[[${beautiful.totalPages}]]*/,

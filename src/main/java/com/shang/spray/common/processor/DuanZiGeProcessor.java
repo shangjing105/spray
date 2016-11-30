@@ -1,7 +1,9 @@
 package com.shang.spray.common.processor;
 
+import com.shang.spray.common.utils.Constant;
 import com.shang.spray.entity.Funny;
 import com.shang.spray.entity.Sources;
+import org.apache.commons.lang3.StringUtils;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -28,8 +30,10 @@ public class DuanZiGeProcessor implements PageProcessor {
             Funny funny=new Funny();
             funny.setTitle(page.getHtml().xpath("//div[@class='xiaohua-data']/h1/text()").toString());
             funny.setContent(page.getHtml().xpath("//div[@class='xiaohua-data']/div[@class='content']/p/text()").toString());
-            funny.setSources(new Sources(6));
-            page.putField("funny", funny);
+            funny.setSources(new Sources(Constant.Sources_DuanZiGe));
+            if (StringUtils.isNotEmpty(funny.getTitle()) && StringUtils.isNotEmpty(funny.getContent())) {
+                page.putField("funny", funny);
+            }
         }
 
     }
