@@ -1,5 +1,7 @@
 # spray-水花头条后台管理
 
+**这个项目已被拆成几个小项目，想了解了可以看 https://github.com/shangjing105/spray-module 项目，并对项目做了很多优化，这个项目已不更新**
+
 **这里放上几张后台管理的界面**
 
 ![login](http://o6n64wdk9.bkt.clouddn.com/e96774dd60f946408e94a0b6d9eb7dbc.png)
